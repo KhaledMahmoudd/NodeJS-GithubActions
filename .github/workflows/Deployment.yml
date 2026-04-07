@@ -15,6 +15,7 @@ jobs:
       - name: Test React app
         run : npm test
   Deploy:
+    needs: Test_Env
     runs-on: ubuntu-22.04
     steps:
       - name: Fetch github repo
