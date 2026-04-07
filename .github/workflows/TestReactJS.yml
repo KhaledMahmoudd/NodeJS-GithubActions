@@ -1,7 +1,7 @@
 name: Test ReactJS web app
 on: push
 jobs:
-  Configure_Env:
+  Test_Env:
     runs-on: ubuntu-22.04
     steps:
       - name: Fetch github repo
@@ -14,4 +14,16 @@ jobs:
         run: npm ci
       - name: Test React app
         run : npm test
-      
+  Deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Fetch github repo
+        uses: actions/checkout@v3
+      - name: Install NodeJS for React
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Build Code
+        run: npm run build
+      - name: Deploy to Server
+        run: echo "Deploying ..."
