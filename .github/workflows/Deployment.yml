@@ -1,5 +1,21 @@
 name: Test ReactJS web app
-on: [push, workflow_dispatch] #Multiple Triggers
+#on: [push, workflow_dispatch] #Multiple Triggers
+on: 
+  pull_request: #Use Types to specify which action of pull_request u want
+    types: 
+      - opened
+      - edited
+      - reopened
+  push:
+    branches:
+      - main
+      - 'dev-*' # could be: dev-new, dev-new-branch, etc..
+      - 'feature/**'  # could be: feature/new, feature/new/branch, etc..
+    paths:
+      - '.github/workflows/*' # Workflow will not run until u change files in this path
+    # paths-ignore:
+    # - '.github/workflows/*' # Workflow will not run if u change files in this path
+    
 jobs:
   Test_Env:
     runs-on: ubuntu-22.04
