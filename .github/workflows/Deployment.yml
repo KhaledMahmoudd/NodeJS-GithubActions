@@ -1,5 +1,5 @@
 name: Test ReactJS web app
-on: push
+on: [push, workflow_dispatch] #Multiple Triggers
 jobs:
   Test_Env:
     runs-on: ubuntu-22.04
