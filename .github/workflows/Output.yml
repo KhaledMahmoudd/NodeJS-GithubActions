@@ -1,0 +1,8 @@
+name: Output Contexts
+on: workflow_dispatch
+jobs:
+  extractInfo:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Github Output 
+        run: echo "${{ toJSON(github) }}"   # use toJSON function to extract the value of "gitub" key
