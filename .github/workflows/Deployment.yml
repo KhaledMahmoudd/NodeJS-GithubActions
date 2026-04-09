@@ -21,11 +21,16 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Fetch github repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install NodeJS for React
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
+      - name: Caching Dependencies
+        uses: actions/cach@v4
+        with:
+          path: ~/.npm  # Local Cach path for NPM
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}   # Use this key to compare between new deps and cach, if equals -> don't install deps, otherwise install it.
       - name: Install Packages
         run: npm ci
       - name: Test React app
@@ -37,11 +42,16 @@ jobs:
       script-file: ${{ steps.publish.outputs.file-name }}
     steps:
       - name: Fetch github repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install NodeJS for React
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
+      - name: Caching Dependencies
+        uses: actions/cach@v4
+        with:
+          path: ~/.npm  # Local Cach path for NPM
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}   # Use this key to compare between new deps and cach, if equals -> don't install deps, otherwise install it.
       - name: Install Packages
         run: npm ci
       - name: Build Code
