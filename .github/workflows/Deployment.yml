@@ -56,5 +56,11 @@ jobs:
     needs: Build
     runs-on: ubuntu-22.04
     steps:
+      - name: Download Artifact from Build Job
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+      - name: List all files
+        run: ls
       - name: Deploy to Server
         run: echo "Deploying ..."
