@@ -33,6 +33,8 @@ jobs:
   Build:
     needs: Test_Env
     runs-on: ubuntu-22.04
+    outputs:
+      script-file: ${{ steps.publish.outputs.file-name }}
     steps:
       - name: Fetch github repo
         uses: actions/checkout@v3
@@ -44,6 +46,9 @@ jobs:
         run: npm ci
       - name: Build Code
         run: npm run build
+      - name: Store value in Outputs  # Publish the filename of .JS in the Artifact
+        id: publish   # Use this ID to access the Output to the filename
+        run: find /dist/assets/*.js -type f -execdir echo 'file-name={}' >> $GITHUB_OUTPUT ';'  # Shell command to find the filename and store it in the "Output" of Github.
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
