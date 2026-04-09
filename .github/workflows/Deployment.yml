@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 18
       - name: Caching Dependencies
-        uses: actions/cach@v4
+        uses: actions/cache@v4
         with:
           path: ~/.npm  # Local Cach path for NPM
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}   # Use this key to compare between new deps and cach, if equals -> don't install deps, otherwise install it.
@@ -48,7 +48,7 @@ jobs:
         with:
           node-version: 18
       - name: Caching Dependencies
-        uses: actions/cach@v4
+        uses: actions/cache@v4
         with:
           path: ~/.npm  # Local Cach path for NPM
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}   # Use this key to compare between new deps and cach, if equals -> don't install deps, otherwise install it.
