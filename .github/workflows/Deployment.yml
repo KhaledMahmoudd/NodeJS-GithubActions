@@ -11,8 +11,8 @@ on:
       - main
       - 'dev-*' # could be: dev-new, dev-new-branch, etc..
       - 'feature/**'  # could be: feature/new, feature/new/branch, etc..
-    paths:
-      - '.github/workflows/*' # Workflow will not run until u change files in this path
+   # paths:
+   #   - '.github/workflows/*' # Workflow will not run until u change files in this path
     # paths-ignore:
     # - '.github/workflows/*' # Workflow will not run if u change files in this path
     
