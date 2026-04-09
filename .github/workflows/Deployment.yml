@@ -30,7 +30,7 @@ jobs:
         run: npm ci
       - name: Test React app
         run : npm test
-  Deploy:
+  Build:
     needs: Test_Env
     runs-on: ubuntu-22.04
     steps:
@@ -44,5 +44,17 @@ jobs:
         run: npm ci
       - name: Build Code
         run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: dist
+          # path: |
+          # dist
+          # package.json
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-22.04
+    steps:
       - name: Deploy to Server
         run: echo "Deploying ..."
