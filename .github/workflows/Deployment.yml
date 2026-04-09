@@ -65,6 +65,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist-files
+      - name: Calling Output from Build Job
+        run: echo "${{ needs.Build.outputs.script-file }}"  # Accessing the Output of Build Job in the Deploy Job
       - name: List all files
         run: ls
       - name: Deploy to Server
